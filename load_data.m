@@ -1,8 +1,9 @@
-clc;
-clear;
-close all;
+function [data_audio, y] = load_data(folder)
 
-folder = 'data';
+if nargin < 1
+    folder = 'data';
+end
+
 audio_files = dir(fullfile(folder, '**/*.wav'));
 data_audio = {};
 for i = 1:numel(audio_files)
@@ -13,5 +14,4 @@ for i = 1:numel(audio_files)
     full_path = strcat(path, filename);
     data_audio{i} = audioread(full_path);
 end
-
-save('data/data_pasien.mat','data_audio','y');
+end

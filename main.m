@@ -5,7 +5,8 @@ close all;
 addpath('lib/mfcc/');
 addpath('lib/sap-voicebox/voicebox');
 
-load 'data/data_pasien.mat';
+% load 'data/data_pasien.mat';
+[data_audio, y] = load_data();
 %% Lakukan preprocessing
 audio_mono = {};
 for i = 1:size(data_audio,2)
