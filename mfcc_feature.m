@@ -1,6 +1,6 @@
 function m = mfcc_feature(x, fs, koef, nframe)
 
-bank = melbankm(koef, nframe, fs, 0, 0.5, 't');
+bank = v_melbankm(koef, nframe, fs, 0, 0.5, 't');
 bank = full(bank);
 bank = bank/max(bank(:));
 
