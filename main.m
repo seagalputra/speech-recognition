@@ -62,7 +62,7 @@ prediction = dt.predict(X_testing);
 
 %% Hitung akurasi
 for ll = 1:size(Y_testing,1)
-    if (prediction(ll) == Y_testing(ll))
+    if (isequal(prediction(ll), Y_testing(ll)))
         right_label(ll) = 1;
     else
         right_label(ll) = 0;
