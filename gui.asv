@@ -58,14 +58,12 @@ global dt;
 % Load model
 dt = loadCompactModel('model_decision_tree.mat');
 
-% Load logo 1
 axes(handles.logo2_fig);
 logo2 = imread('logo2.jpg');
 image(logo2);
 axis off;
 axis image;
-
-% Load logo telkom
+% Load logo
 axes(handles.telkom_logo);
 logo = imread('logo_telkom.png');
 image(logo);
@@ -74,11 +72,7 @@ axis image;
 
 % Load pas foto
 axes(handles.foto_fig);
-pas_foto = imread('football.jpg');
-image(pas_foto);
-axis off;
-axis image;
-
+pas_foto = 
 % Update handles structure
 guidata(hObject, handles);
 
@@ -102,27 +96,21 @@ function ekstraksi_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to ekstraksi_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global dt;
 global audio_mfcc;
 global data_audio;
-global audio_mono;
-global ciri;
-
-audio_mono = stereo_to_mono(data_audio);
-[ciri, audio_mfcc] = ekstraksi_ciri(audio_mono);
+audio_mfcc = ekstraksi_ciri(data_audio);
 axes(handles.ekstraksi_fig);
-plot(audio_mfcc);
+% plot(audio_mfcc);
+% axes(handles.ekstraksi_fig);
+view(dt, 'Mode', 'Graph');
 
 % --- Executes on button press in hasil_btn.
 function hasil_btn_Callback(hObject, eventdata, handles)
 % hObject    handle to hasil_btn (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global dt;
-global ciri;
-global prediction;
-prediction = dt.predict(ciri);
-set(handles.hasil_txt, 'string', prediction);
-view(dt, 'Mode', 'Graph');
+
 
 
 function hasil_txt_Callback(hObject, eventdata, handles)
@@ -194,6 +182,8 @@ axes(handles.file_fig);
 plot(data_audio);
 axes(handles.spectrogram1_fig);
 spectrogram(data_audio(:,1));
+axes(handles.spectrogram2_fig);
+spectrogram(data_audio(:,2));
 
 % --- Executes on button press in play_btn.
 function play_btn_Callback(hObject, eventdata, handles)

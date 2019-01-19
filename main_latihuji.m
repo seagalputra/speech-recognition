@@ -42,7 +42,7 @@ end
 %% Pilih koeff dengan mengubah variabel filter sebanyak nilai koeff
 ciri_latih = [];
 ciri_uji = [];
-filter = [1:10]; % ubah nilai array berikut
+filter = [1:14]; % ubah nilai array berikut
 for m = 1:size(audio_mfcc_latih,2)
     koeff_mfcc_latih{m} = audio_mfcc_latih{m}(:,filter(:));
 end
@@ -64,7 +64,6 @@ for kk = 1:size(audio_mfcc_uji,2)
     ciri_uji = [ciri_uji; ciri_temp];
 end
 ciri_uji = real(ciri_uji);
-
 %% Lakukan prediksi dengan menggunakan decision tree
 disp('Please wait.. Still fitting model..');
 y_latih = y_latih';
@@ -72,6 +71,7 @@ y_uji = y_uji';
 dt = fitctree(ciri_latih,y_latih); % proses learning untuk data latih
 prediction = dt.predict(ciri_uji); % prediksi label untuk data uji
 view(dt, 'Mode', 'Graph');
+saveCompactModel(dt, 'model_decision_tree');
 
 %% Menghitung akurasi dari data uji yang dipilih
 for ll = 1:size(y_uji,1)
