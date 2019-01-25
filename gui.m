@@ -107,7 +107,7 @@ global data_audio;
 global audio_mono;
 global ciri;
 
-fs = 44100;
+fs = 16000;
 nfft = 2^12;
 K = nfft/2+1;
 M = 23;
