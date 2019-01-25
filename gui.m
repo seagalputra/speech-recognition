@@ -107,10 +107,18 @@ global data_audio;
 global audio_mono;
 global ciri;
 
+fs = 44100;
+nfft = 2^12;
+K = nfft/2+1;
+M = 23;
+hz2mel = @(hz)(1127*log(1+hz/700));
+mel2hz = @(mel)(700*exp(mel/1127)-700);
+[H, freq] = trifbank(M, K, [0 7000], fs, hz2mel, mel2hz);
 audio_mono = stereo_to_mono(data_audio);
 [ciri, audio_mfcc] = ekstraksi_ciri(audio_mono);
 axes(handles.ekstraksi_fig);
-plot(audio_mfcc);
+plot(freq,H);
+set(gca, 'box', 'off');
 
 % --- Executes on button press in hasil_btn.
 function hasil_btn_Callback(hObject, eventdata, handles)
