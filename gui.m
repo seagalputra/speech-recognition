@@ -110,7 +110,7 @@ global ciri;
 fs = 16000;
 nfft = 2^12;
 K = nfft/2+1;
-M = 23;
+M = 13;
 hz2mel = @(hz)(1127*log(1+hz/700));
 mel2hz = @(mel)(700*exp(mel/1127)-700);
 [H, freq] = trifbank(M, K, [0 7000], fs, hz2mel, mel2hz);
@@ -201,7 +201,7 @@ data_audio = audioread(handles.my_audio);
 axes(handles.file_fig);
 plot(data_audio);
 axes(handles.spectrogram1_fig);
-spectrogram(data_audio(:,1));
+spectrogram(data_audio(:,1), 'yaxis');
 
 % --- Executes on button press in play_btn.
 function play_btn_Callback(hObject, eventdata, handles)
