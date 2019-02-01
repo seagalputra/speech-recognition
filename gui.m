@@ -111,6 +111,11 @@ audio_mono = stereo_to_mono(data_audio);
 [ciri, audio_mfcc] = ekstraksi_ciri(audio_mono);
 axes(handles.ekstraksi_fig);
 plot(audio_mfcc);
+title('Mel-Frequency Cepstral Coefficients (MFCC) over Time');
+ylabel('Relative Intensity');
+xlabel('Time (ms)');
+lgd = legend('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11' ,'12', '13');
+title(lgd, 'Cepstrum');
 
 % --- Executes on button press in hasil_btn.
 function hasil_btn_Callback(hObject, eventdata, handles)
